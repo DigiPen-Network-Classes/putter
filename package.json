@@ -1,0 +1,17 @@
+{
+  "name": "posttest",
+  "version": "1.0.0",
+  "description": "Postman Test Runner for CS261",
+  "main": "post.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node post.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^10.0.0"
+  }
+}
