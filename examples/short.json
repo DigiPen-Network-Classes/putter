@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "e3fa54e2-6009-4e7a-bab4-9b57c59dae16",
+		"name": "Short Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Creating a user with POST on users/",
+			"item": [
+				{
+					"name": "Create succeeds with a new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return a user ID', function() {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id).not.to.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test('should return the username', function() {\r",
+									"    pm.expect(jsonData).to.have.property('username');\r",
+									"    pm.expect(jsonData.username).to.equal(pm.environment.get(\"testUser\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should return the password', function() {\r",
+									"    pm.expect(jsonData).to.have.property('password');\r",
+									"    pm.expect(jsonData.password).to.equal(pm.environment.get(\"testPassword\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should return the avatar', function() {\r",
+									"    pm.expect(jsonData).to.have.property('avatar');\r",
+									"    pm.expect(jsonData.avatar).to.equal(pm.environment.get(\"testAvatar\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('ID is not the same as the username', function() {\r",
+									"    pm.expect(jsonData.username).to.not.equal(jsonData.id);\r",
+									"});\r",
+									"\r",
+									"pm.test('ID is not the same as the password', function() {\r",
+									"    pm.expect(jsonData.password).to.not.equal(jsonData.id);\r",
+									"});\r",
+									"\r",
+									"pm.test('ID is not the same as the avatar', function() {\r",
+									"    pm.expect(jsonData.avatar).to.not.equal(jsonData.id);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"userId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var digits = '' + Math.floor((Math.random() * 100000));",
+									"pm.environment.set(\"testUser\", \"user\" + digits);",
+									"pm.environment.set(\"testPassword\", \"password\" + digits);",
+									"pm.environment.set(\"testAvatar\", \"avi\" + digits);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create succeeds with distinct second user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return a user ID', function() {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test('should not have the same user ID as the first user', function() {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id).to.not.equal(pm.environment.get('userId'));\r",
+									"});\r",
+									"\r",
+									"pm.test('should return the correct username', function() {\r",
+									"    pm.expect(jsonData).to.have.property('username');\r",
+									"    pm.expect(jsonData.username).to.equal(pm.environment.get(\"otherUser\"));\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"otherUserId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var digits = '' + Math.floor(Math.random() * 100000);",
+									"pm.environment.set(\"otherUser\", \"user\" + digits);",
+									"pm.environment.set(\"otherPassword\", \"password\" + digits);",
+									"pm.environment.set(\"otherAvatar\", \"avi\" + digits);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"{{otherUser}}\",\n\"password\": \"{{otherPassword}}\",\n\"avatar\": \"{{otherAvatar}}\"\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create fails with duplicate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 409\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}	
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "3100"
+		},
+		{
+			"key": "address",
+			"value": "localhost"
+		},
+		{
+			"key": "game_port",
+			"value": "4200"
+		}
+	]
+}
