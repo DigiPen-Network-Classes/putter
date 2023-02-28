@@ -3,16 +3,19 @@ import axios from 'axios';
 import { substituteString, convertHeaders } from './variables.js';
 import { PM } from './pm.js';
 
-// chalk prints pretty colors
+// chalk prints pretty colors for console
 import chalk from 'chalk';
+chalk.level = 1; // keep it simple
+// helper functions
 const log = console.log;
-chalk.level = 1;
 const error = chalk.redBright;
 const warning = chalk.yellow;
 
 // commander does our command-line interface
 import {Command} from 'commander';
 const program = new Command();
+
+let verboseMode = false;
 
 // file system work with promises
 import fs from 'fs/promises';
@@ -34,7 +37,6 @@ function createVM() {
     });
 }
 
-
 program
     .name('post')
     .description('run unit tests for CS261 assignments');
@@ -42,7 +44,12 @@ program
 program
     .command('run')
     .argument('<string>', 'file to run')
+    .option('--verbose', 'verbose output')
     .action((filename, options) => {
+        verboseMode = options.verbose;
+        if (verboseMode) {
+            log(error("VERBOSE MODE!"));
+        }
         log(`processing ${filename}`);
         fs.readFile(filename)
         .then(async data => {
@@ -51,7 +58,8 @@ program
             await doRun(postObj);
         }
         ).catch(err => {
-            log(error(`Failed to process input file: ${err}`));            
+            log(error(`Failed to process input file: ${err}`));
+            process.exit(1);
         });
     });
 
@@ -72,7 +80,6 @@ async function doRun(postObj) {
             let response = await doRequest(folder, item);
             
             evaluateTests(folder, item, response);
-            // if something failed, then exit
         }
     }
 }
@@ -80,33 +87,42 @@ async function doRun(postObj) {
 // process the 'variable' section, loading some values
 // into our sandbox global space
 function loadVariables(postObj) {
-    console.log(chalk.blue("LOAD VARIABLES"));
+    log("Loading Variables...");
     for(let i = 0; i < postObj.variable.length; i++) {
         let kv = postObj.variable[i];
-        console.log(chalk.blue(JSON.stringify(kv)));
+        if (verboseMode) {
+            console.log(chalk.blue(JSON.stringify(kv)));
+        }
         sandbox.pm.environment.set(kv.key, kv.value);
     }
+
     // TODO overrides from command line options here
     
-    console.log(chalk.blue("Variables processed"));
+    log("Variables processed");
 }
 
 // execute all the 'prerequest' events found in this item
 async function doPreRequestEvent(folder, item) {
     item.event.forEach(async event => {
+        
         if (event.listen != "prerequest") {
             // not the event type we're looking for
             return;
         }
         let script = event.script.exec.join('\n');
         if (script.length > 0) {
-            console.log(chalk.yellow("PreRequestEvent Script:"))
-            console.log(chalk.yellow(script));    
-            console.log(chalk.yellow("--------"));
-
-            console.log(error("about to run pre-request"));
+            
+            if (verboseMode) {
+                log(warning("PreRequestEvent Script:"))
+                log(warning(script));    
+                log(warning("--------"));
+                log(warning("about to run pre-request"));
+            }
             await createVM().run(script);
-            console.log(error("done running pre-request"));
+
+            if (verboseMode) {
+                log(warning("done running pre-request"));
+            }
             
             printEnvironment();
         } 
@@ -114,6 +130,9 @@ async function doPreRequestEvent(folder, item) {
 }
 
 function printEnvironment() {
+    if (!verboseMode) {
+        return;
+    }
     console.log(chalk.green("Status of Environment:"));
     console.log(chalk.green(`PM environment: `));
     sandbox.pm.environment.forEach((v, k) => {
@@ -135,11 +154,6 @@ async function doRequest(folder, item) {
         // else other types...
         log(error(`Unhandled request type: ${req.method}`));
     }
-
-    // method
-    // header
-    // body 
-    // url 
 }
 
 async function doRequestPost(folder, item, req) {
@@ -175,15 +189,21 @@ async function evaluateTests(folder, item, resp) {
         }
         let script = event.script.exec.join('\n');
         if (script.length > 0) {
-            console.log(chalk.cyan("Test Script:"))
-            console.log(chalk.cyan(script));    
-            console.log(chalk.cyan("--------"));
-
             
-            await createVM().run(script);
-            // evaluate success or failure
-            // 
-            printEnvironment();
+            if (verboseMode) {
+                console.log(chalk.cyan("Test Script:"))
+                console.log(chalk.cyan(script));    
+                console.log(chalk.cyan("--------"));
+            }
+            
+            try {
+                await createVM().run(script);
+            } catch(err) {
+                log(error(`Test "${folder.name} - ${item.name}": tests failed! Quitting!`));
+                log(error(err));
+                printEnvironment();
+                process.exit(1);
+            }
         }
     }
 }
