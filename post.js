@@ -1,8 +1,7 @@
 
 import axios from 'axios';
 import { substituteString, convertHeaders } from './variables.js';
-import { PM } from './pm.js';
-
+import { createVM, sandbox } from './vm.js';
 // chalk prints pretty colors for console
 import chalk from 'chalk';
 chalk.level = 1; // keep it simple
@@ -14,28 +13,11 @@ const warning = chalk.yellow;
 // commander does our command-line interface
 import {Command} from 'commander';
 const program = new Command();
-
 let verboseMode = false;
 
 // file system work with promises
 import fs from 'fs/promises';
 
-// execute all our scripted code in a VM for at least
-// some minor improvement in safety. Note that this isn't
-// 100% safe...don't run untrusted scripts...
-import {NodeVM} from 'vm2'; 
-
-// sandbox is the state that exists between runs
-const sandbox = {};
-sandbox.pm = new PM();
-
-function createVM() {
-    return new NodeVM({ 
-        console: 'inherit',
-        sandbox: sandbox,
-        require: { external: true, root: './'}
-    });
-}
 
 program
     .name('post')
