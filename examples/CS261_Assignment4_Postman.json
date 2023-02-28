@@ -239,7 +239,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = JSON.parse(responseBody);\r",
+									"let jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -304,7 +304,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = JSON.parse(responseBody);\r",
+									"let jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -360,7 +360,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = JSON.parse(responseBody);\r",
+									"let jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -507,7 +507,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -576,7 +576,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -881,7 +881,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -955,7 +955,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1300,7 +1300,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1638,7 +1638,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1707,7 +1707,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1780,7 +1780,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2076,7 +2076,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = JSON.parse(responseBody);\r",
+									"let jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2133,7 +2133,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
+									"var jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2192,7 +2192,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = JSON.parse(responseBody);\r",
+									"let jsonData = pm.response.json();\r",
 									"\r",
 									"pm.test(\"status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",

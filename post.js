@@ -55,7 +55,7 @@ async function doRun(postObj) {
         
         for(let itemIdx = 0; itemIdx < folder.item.length; itemIdx++) {
             let item = folder.item[itemIdx];
-            log(`Item: ${item.name}`);
+            log(`\tItem: ${item.name}`);
             
             await doPreRequestEvent(folder, item);
             
@@ -64,6 +64,8 @@ async function doRun(postObj) {
             evaluateTests(folder, item, response);
         }
     }
+    // if we're here, we were successful!
+    log(chalk.green(`Test run successful! Ran ${sandbox.pm.testCounter} tests.`));
 }
 
 // process the 'variable' section, loading some values
@@ -126,20 +128,8 @@ function printEnvironment() {
 // run an HTTP Request against a target, in a sandbox
 // keep track of all the results for testing later!
 async function doRequest(folder, item) {
-
     let req = item.request;
-    if (req.method.toUpperCase() === "POST") {
-        return await doRequestPost(folder, item, req);
-//    } else if (req.method.toUpperCase() === "GET") {
-        //await doRequestGet(folder, item, req);
-    } else {
-        // else other types...
-        log(error(`Unhandled request type: ${req.method}`));
-    }
-}
-
-async function doRequestPost(folder, item, req) {
-    // build url
+   // build url
     let url = substituteString(req.url.raw, sandbox.pm.environment);
     // build post body
     let body = substituteString(req.body.raw, sandbox.pm.environment);
@@ -148,15 +138,19 @@ async function doRequestPost(folder, item, req) {
 
     // execute and get response
     try {
-        return await axios.post(url, body, {
+        return await axios({
+            method: req.method,
+            url: url,
+            data: body,
             headers: headers,
             validateStatus: (s) => {
                 return s < 500;
             }
         });
     } catch(err) {
-        log(error(`POST request failed: ${err}`));
-        throw err;
+        log(error(`${req.method} request to ${url} failed: ${err}`));
+        //throw err;
+        process.exit(1);
     }
 }
 
@@ -183,6 +177,7 @@ async function evaluateTests(folder, item, resp) {
             } catch(err) {
                 log(error(`Test "${folder.name} - ${item.name}": tests failed! Quitting!`));
                 log(error(err));
+                log(error(`Ran ${sandbox.pm.testCounter} tests, with errors`));
                 printEnvironment();
                 process.exit(1);
             }

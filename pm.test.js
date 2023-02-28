@@ -116,3 +116,13 @@ test('id is same as password', ()=>{
     }).toThrow();
 });
 
+
+test('user id and session should not be same', ()=> {
+    let pm = new PM();
+    pm.environment.set("userId", "userId");
+    let jsonData = { session: "sessionId"};
+
+    pm.test('user ID and session should not be the same', ()=> {
+        pm.expect(jsonData.session).to.not.be.equal(pm.environment.get('userId'));
+    })
+});

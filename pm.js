@@ -3,11 +3,13 @@ export class PM {
     constructor() {
         this.environment = new Map();
         this.response = new Response();
+        this.testCounter = 0;
     }
 
     test(testName, testFunc) {
         let pm = this;
         testFunc();
+        this.testCounter++;
     }
     
     expect(obj) {
@@ -63,6 +65,10 @@ class Expectation {
         if (!success) {
             throw new Error(`expected${this.pritnNot} to be equal, ${this.actual} vs. ${expected}`);
         }
+    }
+    
+    eql(expected) {
+        return this.equal(expected);
     }
     
     property(propertyName) {
