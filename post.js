@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import http from 'http';
 import { substituteString, convertHeaders } from './variables.js';
 import { createVM, sandbox } from './vm.js';
 // chalk prints pretty colors for console
@@ -87,11 +88,12 @@ function loadVariables(postObj) {
 
 // execute all the 'prerequest' events found in this item
 async function doPreRequestEvent(folder, item) {
-    item.event.forEach(async event => {
+    for (let i=0; i < item.event.length; i++) {
+        let event = item.event[i];
         
         if (event.listen != "prerequest") {
             // not the event type we're looking for
-            return;
+            continue;
         }
         let script = event.script.exec.join('\n');
         if (script.length > 0) {
@@ -110,7 +112,7 @@ async function doPreRequestEvent(folder, item) {
             
             printEnvironment();
         } 
-    });
+    }
 }
 
 function printEnvironment() {
@@ -145,11 +147,11 @@ async function doRequest(folder, item) {
             headers: headers,
             validateStatus: (s) => {
                 return s < 500;
-            }
+            },
+            httpAgent: new http.Agent({ keepAlive: false })
         });
     } catch(err) {
         log(error(`${req.method} request to ${url} failed: ${err}`));
-        //throw err;
         process.exit(1);
     }
 }
@@ -161,7 +163,8 @@ async function evaluateTests(folder, item, resp) {
     for(let i=0; i < item.event.length; i++) {
         let event = item.event[i];
         if (event.listen !== "test") {
-            break;
+            continue;
+            
         }
         let script = event.script.exec.join('\n');
         if (script.length > 0) {
@@ -175,10 +178,10 @@ async function evaluateTests(folder, item, resp) {
             try {
                 await createVM().run(script);
             } catch(err) {
+                printEnvironment();
                 log(error(`Test "${folder.name} - ${item.name}": tests failed! Quitting!`));
                 log(error(err));
                 log(error(`Ran ${sandbox.pm.testCounter} tests, with errors`));
-                printEnvironment();
                 process.exit(1);
             }
         }

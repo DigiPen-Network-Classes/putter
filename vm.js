@@ -11,15 +11,11 @@ export const sandbox = {};
 sandbox.pm = new PM();
 //sandbox.sleep = async (ms) => { return new Promise(resolve => { setTimeout(resolve, ms)}) };
 sandbox.sleep = (ms) => { 
+    console.log(`[sleeping for ${ms} milliseconds]`);
     let waitTill = new Date(new Date().getTime() + ms);
     while (waitTill > new Date()) {}
 };
 sandbox.setTimeout = (fn, ms) => { sandbox.sleep(ms); fn(); }
-
-
-let x = `let waitTill = new Date(new Date().getTime() + 10 * 1000);
-while (waitTill > new Date()) {}`;
-
 
 export function createVM() {
     return new NodeVM({ 

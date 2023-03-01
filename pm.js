@@ -1,3 +1,5 @@
+// PM is an object used in the postman scripts, we're faking it here juussstt enough
+// to get by with only the functionality needed for these scripts.
 
 export class PM {
     constructor() {
@@ -18,6 +20,7 @@ export class PM {
     }
 }
 
+// part of the pm objects used to evaluate responses and run tests
 class Response {
     
     get to() { return this; }
@@ -32,13 +35,15 @@ class Response {
     }
 }
 
+// a very (very) slim set of Expectations; ideally this should use expect or jest or
+// some sort of actual library, but for now this is what I have time for.
 class Expectation {
     constructor(actual) {
         this.actual = actual;
         this.isNegative = false;
     }
     
-    // helper that prints "not", or doesn't, depending
+    // helper that prints "not", or doesn't, depending. crude hack.
     printNot() {
         return this.isNegative ? " not" : "";
     }
@@ -61,6 +66,7 @@ class Expectation {
         }
     }
     
+    // are these equal...ish?
     equal(expected) {
         let success = this.considerNegative(this.actual == expected);
         if (!success) {
@@ -68,6 +74,7 @@ class Expectation {
         }
     }
     
+    // occasionally used
     eql(expected) {
         return this.equal(expected);
     }
