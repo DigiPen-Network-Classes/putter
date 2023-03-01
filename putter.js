@@ -1,8 +1,19 @@
-
+// The Main file for this project.
+// Uses Commander to parse command lines and figure out what to do.
+// Basic usage: given a postman .json file, parse out only the bits
+// we actually used in CS 261 and execute them, recording passes and fails.
+//
 import axios from 'axios';
 import http from 'http';
+
+// file system work with promises
+import fs from 'fs/promises';
+
 import { substituteString, convertHeaders } from './variables.js';
+
 import { createVM, sandbox } from './vm.js';
+
+
 // chalk prints pretty colors for console
 import chalk from 'chalk';
 chalk.level = 1; // keep it simple
@@ -16,8 +27,6 @@ import {Command} from 'commander';
 const program = new Command();
 let verboseMode = false;
 
-// file system work with promises
-import fs from 'fs/promises';
 
 
 program
@@ -35,15 +44,15 @@ program
         }
         log(`processing ${filename}`);
         fs.readFile(filename)
-        .then(async data => {
-            let postObj = JSON.parse(data);
-            log(`Loaded file ${chalk.green(postObj.info.name)}`);
-            await doRun(postObj);
-        }
-        ).catch(err => {
-            log(error(`Failed to process input file: ${err}`));
-            process.exit(1);
-        });
+            .then(async data => {
+                let postObj = JSON.parse(data);
+                log(`Loaded file ${chalk.green(postObj.info.name)}`);
+                await doRun(postObj);
+            })
+            .catch(err => {
+                log(error(`Failed to process input file: ${err}`));
+                process.exit(1);
+            });
     });
 
 // given a postman json object, run all the tests in it
@@ -104,23 +113,20 @@ async function doPreRequestEvent(folder, item) {
                 log(warning("--------"));
                 log(warning("about to run pre-request"));
             }
+            
+            // runs the event code:
             await createVM().run(script);
 
             if (verboseMode) {
                 log(warning("done running pre-request"));
+                printEnvironment();
             }
-            
-            printEnvironment();
         } 
     }
 }
 
 function printEnvironment() {
-    if (!verboseMode) {
-        return;
-    }
     console.log(chalk.green("Status of Environment:"));
-    console.log(chalk.green(`PM environment: `));
     sandbox.pm.environment.forEach((v, k) => {
         console.log(chalk.green(`${k} = ${v}`));
     })
@@ -146,7 +152,7 @@ async function doRequest(folder, item) {
             data: body,
             headers: headers,
             validateStatus: (s) => {
-                return s < 500;
+                return s < 500; // 5xx errors will throw an error and bail on the whole thing
             },
             httpAgent: new http.Agent({ keepAlive: false })
         });
@@ -157,8 +163,19 @@ async function doRequest(folder, item) {
 }
 
 async function evaluateTests(folder, item, resp) {
+    
+    // fill in some values in our pm object so that the test script
+    // can use them when evaluating its code
     sandbox.pm.response.actualStatusValue = resp.status;
     sandbox.pm.response.jsonData = resp.data;
+    // so, this is sorta lame: some of the original postman scripts
+    // convert json string to object explicitly, ..but axios already
+    // does that. So, we give those scripts a json string, which will
+    // be turned back into another object. /shrug
+    // Basically, this is to avoid having to make ANY changes to the
+    // original postman files, so that I can compare the results from
+    // postman vs. this program without any changes.
+    sandbox.responseBody = JSON.stringify(resp.data);
 
     for(let i=0; i < item.event.length; i++) {
         let event = item.event[i];
@@ -188,5 +205,5 @@ async function evaluateTests(folder, item, resp) {
     }
 }
 
-
+// execute
 program.parse();

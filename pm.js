@@ -1,5 +1,7 @@
 // PM is an object used in the postman scripts, we're faking it here juussstt enough
 // to get by with only the functionality needed for these scripts.
+    
+import deepEqual from 'deep-eql';
 
 export class PM {
     constructor() {
@@ -66,17 +68,17 @@ class Expectation {
         }
     }
     
-    // are these equal...ish?
+    // are these strictly equal? (yes we should be using a real library for this ... TODO)
     equal(expected) {
-        let success = this.considerNegative(this.actual == expected);
+        let success = this.considerNegative(this.actual === expected);
         if (!success) {
             throw new Error(`expected${this.pritnNot} to be equal, ${this.actual} vs. ${expected}`);
         }
     }
     
-    // occasionally used
+    // "deep equal"
     eql(expected) {
-        return this.equal(expected);
+        return deepEqual(this.actual, expected);
     }
     
     property(propertyName) {
@@ -91,14 +93,11 @@ class Expectation {
             }
         }
     }
-    
-
-
 
     //-------- helpers
-
-
     
+    // examine b and do the right thing if its suppose
+    // to be positive or negative
     considerNegative(b) {
         if (this.isNegative) {
             return b === false;
@@ -106,6 +105,7 @@ class Expectation {
         return b === true;
     }
     
+    // borrowed from jest implementation
     isEmptyIterable() {
         if (typeof(this.actual[Symbol.iterator]) !== 'function') {
             return false;

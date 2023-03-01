@@ -1,5 +1,7 @@
 
+// find all {{key}} and replace them with appropriate dict[key]
 export function substituteString(str, dict) {
+    // now we have two problems
     const regex = /{{\w+}}/g;
     let matches = str.match(regex);
     if (matches === null) {
@@ -14,6 +16,8 @@ export function substituteString(str, dict) {
     return str;
 }
 
+// given a bunch of "key=value" structures,
+// turn them into object of { "key": "value"}
 export function convertHeaders(keyvalues) {
     let result = {};
     if (keyvalues !== null) {

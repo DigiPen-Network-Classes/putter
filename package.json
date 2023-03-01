@@ -1,18 +1,19 @@
 {
-  "name": "posttest",
+  "name": "putter",
   "version": "1.0.0",
-  "description": "Postman Test Runner for CS261",
-  "main": "post.js",
+  "description": "Postman Unit Test Trial Evasion Replicator1",
+  "main": "putter.js",
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
-    "start": "node post.js"
+    "start": "node putter.js"
   },
   "license": "MIT",
   "dependencies": {
     "axios": "^1.3.4",
     "chalk": "^5.2.0",
     "commander": "^10.0.0",
+    "deep-eql": "^4.1.3",
     "vm2": "^3.9.14"
   },
   "devDependencies": {
