@@ -2,6 +2,7 @@
 export class PM {
     constructor() {
         this.environment = new Map();
+        this.collectionVariables = this.environment; // postman has two distinct things here but we only really want to use one
         this.response = new Response();
         this.testCounter = 0;
     }
