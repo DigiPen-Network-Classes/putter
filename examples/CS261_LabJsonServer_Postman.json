@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "0b27bef2-a8bf-44f0-9cb5-5fc10be349cc",
+		"name": "CS261 Lab JSON Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+    "item": [
+        {
+            "name": "Succeeds with echo and new ID",
+        	"item": [
+		        {
+        			"name": "Succeeds with echo and new ID",
+		        	"event": [
+				        {
+        					"listen": "test",
+		        			"script": {
+				        		"id": "995824a5-5624-467c-8dcc-033096f33696",
+						        "exec": [
+        							"let jsonData = JSON.parse(responseBody);\r",
+		        					"\r",
+				        			"pm.test(\"status code is 200\", function () {\r",
+						        	"    pm.response.to.have.status(200);\r",
+        							"});\r",
+		        					"\r",
+				        			"pm.test('should return the echo', function() {\r",
+						        	"    pm.expect(jsonData).to.have.property('echo');\r",
+        							"    pm.expect(jsonData.echo).to.equal(pm.collectionVariables.get('input'));\r",
+		        					"});\r",
+				        			"\r",
+						        	"pm.test('should return a ID', function() {\r",
+        							"    pm.expect(jsonData).to.have.property('id');\r",
+		        					"    pm.expect(jsonData.id).to.not.be.empty;\r",
+				        			"});"
+						        ],
+        						"type": "text/javascript"
+        					}
+		        		}
+        			],
+        			"request": {
+		        		"method": "POST",
+        				"header": [
+		        			{
+				        		"key": "Content-Type",
+						        "value": "application/json"
+		        			}
+        				],
+		        		"body": {
+				        	"mode": "raw",
+        					"raw": "{\n\"input\":\"{{input}}\"\n}"
+		        		},
+				        "url": {
+                            "raw": "http://{{address}}:{{port}}/lab",
+                            "protocol": "http",
+                            "host": [ "{{address}}" ],
+                            "port": "{{port}}",
+                            "path": [ "lab" ]
+                        }
+        			},
+		        	"response": []
+        		}
+        	]
+        }
+	],
+	"variable": [
+		{
+			"id": "7017a981-eebc-4368-95ef-17c75b0d04cf",
+			"key": "address",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "cead7b97-95e8-4a39-8eb9-5ded808dbb72",
+			"key": "port",
+			"value": "4000",
+			"type": "string"
+		},
+		{
+			"id": "a47824b3-a739-4beb-a3af-3f8bb8958080",
+			"key": "input",
+			"value": "foo",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

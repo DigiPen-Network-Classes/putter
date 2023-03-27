@@ -26,6 +26,7 @@ const warning = chalk.yellow;
 import {Command} from 'commander';
 const program = new Command();
 let verboseMode = false;
+let addressOverride = undefined;
 
 
 
@@ -37,10 +38,15 @@ program
     .command('run')
     .argument('<string>', 'file to run')
     .option('--verbose', 'verbose output')
+    .option('--address <value>', 'override URL address to use this')
     .action((filename, options) => {
         verboseMode = options.verbose;
         if (verboseMode) {
             log(error("VERBOSE MODE!"));
+        }
+        if (options.address) {
+            addressOverride = options.address;
+            log(error(`Overriding Address to be ${addressOverride}`));
         }
         log(`processing ${filename}`);
         fs.readFile(filename)
@@ -50,7 +56,7 @@ program
                 await doRun(postObj);
             })
             .catch(err => {
-                log(error(`Failed to process input file: ${err}`));
+                log(error(`Failed to process input file: ${err}\n${err.stack}`));
                 process.exit(1);
             });
     });
@@ -62,7 +68,7 @@ async function doRun(postObj) {
     for(let folderIdx=0; folderIdx < postObj.item.length; folderIdx++) {
         let folder = postObj.item[folderIdx]; 
         log(`Folder: ${folder.name}`);
-        
+
         for(let itemIdx = 0; itemIdx < folder.item.length; itemIdx++) {
             let item = folder.item[itemIdx];
             log(`\tItem: ${item.name}`);
@@ -91,6 +97,10 @@ function loadVariables(postObj) {
     }
 
     // TODO overrides from command line options here
+    if (addressOverride) {
+        log(`Setting {{address}} to ${addressOverride}`);
+        sandbox.pm.environment.set("address", addressOverride);
+    }
     
     log("Variables processed");
 }
