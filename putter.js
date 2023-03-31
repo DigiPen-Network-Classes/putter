@@ -27,6 +27,7 @@ import {Command} from 'commander';
 const program = new Command();
 let verboseMode = false;
 let addressOverride = undefined;
+let httpsOverride = false;
 
 
 
@@ -39,6 +40,7 @@ program
     .argument('<string>', 'file to run')
     .option('--verbose', 'verbose output')
     .option('--address <value>', 'override URL address to use this')
+    .option('--https', 'use https instead of http or the default')
     .action((filename, options) => {
         verboseMode = options.verbose;
         if (verboseMode) {
@@ -47,6 +49,10 @@ program
         if (options.address) {
             addressOverride = options.address;
             log(error(`Overriding Address to be ${addressOverride}`));
+        }
+        httpsOverride = options.https;
+        if (httpsOverride) {
+            log(error("Forcing HTTPS instead of HTTP"));
         }
         log(`processing ${filename}`);
         fs.readFile(filename)
@@ -149,6 +155,9 @@ async function doRequest(folder, item) {
     let req = item.request;
    // build url
     let url = substituteString(req.url.raw, sandbox.pm.environment);
+    if (httpsOverride) {
+        url = url.replace("http://", "https://")
+    }
     // build post body
     let body = substituteString(req.body.raw, sandbox.pm.environment);
     // populate headers
