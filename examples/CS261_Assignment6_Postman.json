@@ -881,7 +881,7 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.comeancat.comm/api/v1/users/xxx{{otherUserId}}xxx",
+							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/xxx{{otherUserId}}xxx",
 							"protocol": "https",
 							"host": [
 								"{{name}}",
@@ -2434,7 +2434,7 @@
 		},
 		{
 			"key": "name",
-			"value": "your_short_name"
+			"value": "trasa"
 		}
 	]
 }
