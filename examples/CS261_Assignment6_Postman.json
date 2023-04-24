@@ -84,14 +84,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -161,14 +159,12 @@
 							"raw": "{\n\"username\": \"{{otherUser}}\",\n\"password\": \"{{otherPassword}}\",\n\"avatar\": \"{{otherAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -216,14 +212,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -288,14 +282,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -346,14 +338,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -404,14 +394,12 @@
 							"raw": "{\n\"username\": \"{{otherUser}}\",\n\"password\": \"{{otherPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -449,14 +437,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -494,14 +480,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -569,14 +553,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -639,14 +621,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{otherUserId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -683,14 +663,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -733,14 +711,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -783,14 +759,12 @@
 							"raw": "{\n\"session\": \"{{originalSession}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -832,14 +806,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -881,14 +853,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -957,14 +927,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{testUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{testUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1032,14 +1000,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{otherUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1090,14 +1056,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{otherUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1153,14 +1117,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{otherUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1207,14 +1169,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1261,14 +1221,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1315,14 +1273,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1394,14 +1350,12 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{newUser}}\",\n\"password\": \"{{newPassword}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1449,14 +1403,12 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{otherUserId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1504,14 +1456,12 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1559,14 +1509,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1614,14 +1562,12 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/xx{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1669,14 +1615,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/xx{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1740,14 +1684,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{userId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1810,14 +1752,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users/{{otherUserId}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1891,14 +1831,12 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"game_type\" : \"Lockstep\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/connect",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/connect",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1945,14 +1883,12 @@
 							"raw": "{\n\"game_type\" : \"Lockstep\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/connect",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/connect",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -1999,14 +1935,12 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"game_type\" : \"Lockstep\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/connect",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/connect",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2053,14 +1987,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/connect",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/connect",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2116,14 +2048,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{newUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{newUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2181,14 +2111,12 @@
 							"raw": "{\n\"username\": \"{{newUser}}\",\n\"password\": \"{{newPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2236,14 +2164,12 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{newUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{newUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2304,14 +2230,12 @@
 							"raw": "{\n\"username\": \"{{newUser}}\",\n\"password\": \"{{newPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/login",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/login",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2361,14 +2285,12 @@
 							"raw": "{\n\"session\": \"{{oldSession}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{name}}.cs261.meancat.com/api/v1/users?username={{newUser}}",
-							"protocol": "https",
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{newUser}}",
+							"protocol": "http",
 							"host": [
-								"{{name}}",
-								"cs261",
-								"meancat",
-								"com"
+								"{{address}}"
 							],
+							"port": "{{port}}",
 							"path": [
 								"api",
 								"v1",
@@ -2429,12 +2351,16 @@
 	],
 	"variable": [
 		{
-			"key": "game_port",
-			"value": "4200"
+			"key": "port",
+			"value": "443"
 		},
 		{
-			"key": "name",
-			"value": "trasa"
+			"key": "address",
+			"value": "YOURINITIALS.cs261.meancat.com"
+		},
+		{
+			"key": "game_port",
+			"value": "4200"
 		}
 	]
 }

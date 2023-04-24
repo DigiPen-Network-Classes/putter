@@ -107,6 +107,10 @@ function loadVariables(postObj) {
         log(`Setting {{address}} to ${addressOverride}`);
         sandbox.pm.environment.set("address", addressOverride);
     }
+    if (httpsOverride) {
+        log(`Setting port to 443`);
+        sandbox.pm.environment.set("port", 443);
+    }
     
     log("Variables processed");
 }
@@ -153,10 +157,14 @@ function printEnvironment() {
 // keep track of all the results for testing later!
 async function doRequest(folder, item) {
     let req = item.request;
-   // build url
-    let url = substituteString(req.url.raw, sandbox.pm.environment);
+    // build url
+    let url = req.url.raw;
     if (httpsOverride) {
         url = url.replace("http://", "https://")
+    }
+    url = substituteString(url, sandbox.pm.environment);
+    if (verboseMode) {
+        console.log(`request url is ${url}`);
     }
     // build post body
     let body = substituteString(req.body.raw, sandbox.pm.environment);
