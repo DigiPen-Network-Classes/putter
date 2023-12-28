@@ -1,0 +1,69 @@
+{
+	"info": {
+		"name": "Empty Test"
+	},
+	"item": [
+		{
+			"name": "This is a folder",
+			"item": [
+				{
+					"name": "This is an item (a group of unit tests)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"what is true is true\", function () {\r",
+									"    return true;\r",
+									"});\r"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "3100"
+		},
+		{
+			"key": "address",
+			"value": "localhost"
+		},
+		{
+			"key": "game_port",
+			"value": "4200"
+		}
+	]
+}

@@ -32,15 +32,15 @@ let httpsOverride = false;
 
 
 program
-    .name('post')
+    .name('putter')
     .description('run unit tests for CS261 assignments');
 
 program
     .command('run')
     .argument('<string>', 'file to run')
     .option('--verbose', 'verbose output')
-    .option('--address <value>', 'override URL address to use this')
-    .option('--https', 'use https instead of http or the default')
+    .option('--address <value>', 'override URL address')
+    .option('--https', 'use https')
     .action((filename, options) => {
         verboseMode = options.verbose;
         if (verboseMode) {
