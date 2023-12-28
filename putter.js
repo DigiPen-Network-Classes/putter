@@ -2,7 +2,7 @@
 // Uses Commander to parse command lines and figure out what to do.
 // Basic usage: given a postman .json file, parse out only the bits
 // we actually used in CS 261 and execute them, recording passes and fails.
-//
+
 import axios from 'axios';
 import http from 'http';
 
@@ -29,10 +29,20 @@ let verboseMode = false;
 let addressOverride = undefined;
 let httpsOverride = false;
 
+async function getVersion() {
+    try {
+        const packageJSON = JSON.parse(await fs.readFile('./package.json'));
+        return packageJSON.version;
+    } catch(e) {
+        console.log(`Failed to read packageJSON: ${e}`);
+        return "error";
+    }
+}
 
 
 program
     .name('putter')
+    .version(await getVersion())
     .description('run unit tests for CS261 assignments');
 
 program
