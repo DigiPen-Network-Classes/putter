@@ -21,6 +21,7 @@ chalk.level = 1; // keep it simple
 const log = console.log;
 const error = chalk.redBright;
 const warning = chalk.yellow;
+const success = chalk.greenBright;
 
 // commander does our command-line interface
 import {Command} from 'commander';
@@ -87,17 +88,18 @@ async function doRun(postObj) {
 
         for(let itemIdx = 0; itemIdx < folder.item.length; itemIdx++) {
             let item = folder.item[itemIdx];
-            log(`\tItem: ${item.name}`);
+            process.stdout.write(`\tItem: ${item.name}...`);
             
             await doPreRequestEvent(folder, item);
             
             let response = await doRequest(folder, item);
             
             evaluateTests(folder, item, response);
-        }
+            log(success("passed!"));
+        } 
     }
     // if we're here, we were successful!
-    log(chalk.green(`Test run successful! Ran ${sandbox.pm.testCounter} tests.`));
+    log(success(`Test run successful! Ran ${sandbox.pm.testCounter} tests.`));
 }
 
 // process the 'variable' section, loading some values
@@ -156,11 +158,11 @@ async function doPreRequestEvent(folder, item) {
 }
 
 function printEnvironment() {
-    console.log(chalk.green("Status of Environment:"));
+    log(success("Status of Environment:"));
     sandbox.pm.environment.forEach((v, k) => {
-        console.log(chalk.green(`${k} = ${v}`));
+        log(success(`${k} = ${v}`));
     })
-    console.log(chalk.green("-==========-"));
+    log(success("-==========-"));
 }
 
 // run an HTTP Request against a target, in a sandbox
@@ -218,7 +220,6 @@ async function evaluateTests(folder, item, resp) {
         let event = item.event[i];
         if (event.listen !== "test") {
             continue;
-            
         }
         let script = event.script.exec.join('\n');
         if (script.length > 0) {
