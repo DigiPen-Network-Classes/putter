@@ -62,7 +62,7 @@ class Expectation {
 
     // is actual empty or not?
     get empty() {
-        let success = this.considerNegative({} === this.actual) || this.isEmptyIterable();
+        let success = this.considerNegative({} == this.actual) || this.isEmptyIterable();
         if (!success) {
             throw new Error(`expected to be${this.isNegative ? " not" : ""} empty, but wasn't`);
         }
@@ -72,7 +72,7 @@ class Expectation {
     equal(expected) {
         let success = this.considerNegative(this.actual === expected);
         if (!success) {
-            throw new Error(`expected${this.pritnNot} to be equal, ${this.actual} vs. ${expected}`);
+            throw new Error(`expected${this.printNot()} to be equal, ${this.actual} vs. ${expected}`);
         }
     }
     
@@ -91,6 +91,13 @@ class Expectation {
             if (!success) {
                 throw new Error(`expected to${this.isNegative ? " not" : ""} have property ${propertyName}`)
             }
+        }
+    }
+
+    type(typeName) {
+        let success = this.considerNegative(typeof(this.actual) === typeName);
+        if (!success) {
+            throw new Error(`expected${this.printNot()} to be of type ${typeName}, but it is ${typeof(this.actual)}`);
         }
     }
 

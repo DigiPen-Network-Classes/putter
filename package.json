@@ -1,6 +1,6 @@
 {
   "name": "putter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Postman Unit Test Trial Evasion Replicator",
   "main": "putter.js",
   "type": "module",

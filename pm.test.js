@@ -35,6 +35,31 @@ test('should return a user ID', () => {
     });
 });
 
+test('should understand types', ()=> {
+    let pm = new PM();;
+    let jsonData = {
+        username: 'Bob',
+        score: 12345
+    };
+    pm.test('should be a number', ()=> {
+        pm.expect(jsonData.score).to.be.type('number');
+        pm.expect(jsonData.username).to.be.type('string');
+    });
+});
+
+test('should understand when types dont match', ()=> {
+    let pm = new PM();;
+    let jsonData = {
+        username: 'Bob',
+        score: '12345'
+    };
+    expect(()=>{
+        pm.test('should be a number', ()=> {
+            pm.expect(jsonData.score).to.be.type('number');
+        });
+    }).toThrow();
+});
+
 test('failed to return anything results in error', ()=> {
     let pm = new PM();
 
