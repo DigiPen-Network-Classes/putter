@@ -178,8 +178,11 @@ async function doRequest(folder, item) {
     if (verboseMode) {
         console.log(`request url is ${url}`);
     }
-    // build post body
-    let body = substituteString(req.body.raw, sandbox.pm.environment);
+    // build post body?
+    let body = {};
+    if (req.body) {
+        body = substituteString(req.body.raw, sandbox.pm.environment);
+    }
     // populate headers
     let headers = convertHeaders(req.header);
 
