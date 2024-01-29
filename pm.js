@@ -95,6 +95,9 @@ class Expectation {
     }
 
     type(typeName) {
+        if (this.actual === null || this.actual === undefined) {
+            throw new Error(`expected to${this.printNot()} have type ${typeName}, but value is null/undefined`);
+        }
         let success = this.considerNegative(typeof(this.actual) === typeName);
         if (!success) {
             throw new Error(`expected${this.printNot()} to be of type ${typeName}, but it is ${typeof(this.actual)}`);

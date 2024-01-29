@@ -48,14 +48,24 @@ test('should understand types', ()=> {
 });
 
 test('should understand when types dont match', ()=> {
-    let pm = new PM();;
+    let pm = new PM();
     let jsonData = {
         username: 'Bob',
-        score: '12345'
+        score: '12345' // a string
     };
     expect(()=>{
         pm.test('should be a number', ()=> {
             pm.expect(jsonData.score).to.be.type('number');
+        });
+    }).toThrow();
+});
+
+test('cant compare types when undefined', ()=> {
+    let pm = new PM();
+    let jsonData = undefined;
+       expect(()=>{
+        pm.test('should be a number', ()=> {
+            pm.expect(jsonData).to.be.type('number');
         });
     }).toThrow();
 });
