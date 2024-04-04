@@ -29,6 +29,7 @@ const program = new Command();
 let verboseMode = false;
 let addressOverride = undefined;
 let httpsOverride = false;
+let portOverride = undefined;
 
 async function getVersion() {
     try {
@@ -51,6 +52,7 @@ program
     .argument('<string>', 'file to run')
     .option('--verbose', 'verbose output')
     .option('--address <value>', 'override URL address')
+    .option('--port <value>', 'override URL port')
     .option('--https', 'use https')
     .action((filename, options) => {
         verboseMode = options.verbose;
@@ -64,6 +66,10 @@ program
         httpsOverride = options.https;
         if (httpsOverride) {
             log(error("Forcing HTTPS instead of HTTP"));
+        }
+        portOverride = options.port;
+        if (portOverride) {
+            log(error(`Forcing Port ${portOverride} instead of default`));
         }
         log(`processing ${filename}`);
         fs.readFile(filename)
@@ -119,9 +125,9 @@ function loadVariables(postObj) {
         log(`Setting {{address}} to ${addressOverride}`);
         sandbox.pm.environment.set("address", addressOverride);
     }
-    if (httpsOverride) {
-        log(`Setting port to 443`);
-        sandbox.pm.environment.set("port", 443);
+    if (portOverride) {
+        log(`Setting port to ${portOverride}`);
+        sandbox.pm.environment.set("port", portOverride);
     }
     
     log("Variables processed");
