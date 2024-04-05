@@ -2356,7 +2356,7 @@
 		},
 		{
 			"key": "address",
-			"value": "YOURINITIALS.cs261.meancat.com"
+			"value": "(override-with-dashdash-address-arg)"
 		},
 		{
 			"key": "game_port",
