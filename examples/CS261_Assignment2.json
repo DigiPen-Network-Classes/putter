@@ -1,8 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2b220f48-4f4d-4183-97ae-1f279dc31d71",
-		"name": "CS261 Assignment 2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"version": "2.0",
+		"name": "CS261 Assignment 2"
 	},
 	"item": [
 		{
@@ -54,8 +53,7 @@
 									"});\r",
 									"\r",
 									"pm.environment.set(\"userId\", jsonData.id);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -66,8 +64,7 @@
 									"pm.environment.set(\"testUser\", \"user\" + digits);",
 									"pm.environment.set(\"testPassword\", \"password\" + digits);",
 									"pm.environment.set(\"testAvatar\", \"avi\" + digits);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -80,25 +77,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								""
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Create succeeds with distinct second user",
@@ -129,8 +113,7 @@
 									"});\r",
 									"\r",
 									"pm.environment.set(\"otherUserId\", jsonData.id);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -141,8 +124,7 @@
 									"pm.environment.set(\"otherUser\", \"user\" + digits);",
 									"pm.environment.set(\"otherPassword\", \"password\" + digits);",
 									"pm.environment.set(\"otherAvatar\", \"avi\" + digits);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -155,25 +137,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{otherUser}}\",\n\"password\": \"{{otherPassword}}\",\n\"avatar\": \"{{otherAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								""
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Create fails with duplicate user",
@@ -185,17 +154,7 @@
 									"pm.test(\"status code is 409\", function () {\r",
 									"    pm.response.to.have.status(409);\r",
 									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -208,24 +167,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -264,8 +211,7 @@
 									"\r",
 									"pm.environment.set(\"session\", jsonData.session);\r",
 									"pm.environment.set(\"originalSession\", jsonData.session);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -278,24 +224,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login succeeds with a second login with different session",
@@ -320,8 +254,7 @@
 									"});\r",
 									"\r",
 									"pm.environment.set(\"session\", jsonData.session);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -334,24 +267,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login succeeds with second user with different session/token",
@@ -376,8 +297,7 @@
 									"});\r",
 									"\r",
 									"pm.environment.set(\"otherSession\", jsonData.session);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -390,24 +310,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{otherUser}}\",\n\"password\": \"{{otherPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login fails with bad password",
@@ -419,8 +327,7 @@
 									"pm.test(\"status code is 403\", function () {\r",
 									"    pm.response.to.have.status(403);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -433,24 +340,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login fails with bad username",
@@ -462,8 +357,7 @@
 									"pm.test(\"status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -476,24 +370,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -532,14 +414,10 @@
 									"    pm.expect(jsonData).to.have.property('avatar');\r",
 									"    pm.expect(jsonData.avatar).to.eql(pm.environment.get(\"testAvatar\"));\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -549,25 +427,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving a different user succeeds",
@@ -600,14 +465,10 @@
 									"pm.test('should not return other password', function() {\r",
 									"    pm.expect(jsonData).not.to.have.property('password');\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -617,25 +478,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with no session",
@@ -647,37 +495,20 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad session",
@@ -690,14 +521,10 @@
 									"    pm.response.to.have.status(401);\r",
 									"});\r",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -707,25 +534,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with old session",
@@ -738,14 +552,10 @@
 									"    pm.response.to.have.status(401);\r",
 									"});\r",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -755,25 +565,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{originalSession}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad ID (valid session)",
@@ -785,14 +582,10 @@
 									"pm.test(\"status code is 404\", function () {\r",
 									"    pm.response.to.have.status(404);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -802,25 +595,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xxx{{otherUserId}}xxx"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad ID (bad session)",
@@ -832,14 +612,10 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -849,25 +625,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xxx{{otherUserId}}xxx"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -906,14 +669,10 @@
 									"    pm.expect(jsonData).to.have.property('password');\r",
 									"});\r",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -923,30 +682,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{testUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{testUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{testUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching for a different user succeeds",
@@ -979,14 +720,10 @@
 									"pm.test('should not return other password', function() {\r",
 									"    pm.expect(jsonData).not.to.have.property('password');\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -996,30 +733,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with no session",
@@ -1031,8 +750,7 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1040,42 +758,20 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad session",
@@ -1087,8 +783,7 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1096,14 +791,10 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1113,30 +804,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad username (valid session)",
@@ -1148,14 +821,10 @@
 									"pm.test(\"status code is 404\", function () {\r",
 									"    pm.response.to.have.status(404);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1165,30 +834,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "xx{{testUser}}xx"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad username (bad session)",
@@ -1200,14 +851,10 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1217,30 +864,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "xx{{testUser}}xx"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with no username (valid session)",
@@ -1252,14 +881,10 @@
 									"pm.test(\"status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1269,24 +894,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -1320,8 +933,7 @@
 									"    pm.expect(jsonData).to.have.property('avatar');\r",
 									"    pm.expect(jsonData.avatar).to.equal(pm.environment.get(\"newAvatar\"));\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1332,8 +944,7 @@
 									"pm.environment.set(\"newUser\", \"user\" + digits);",
 									"pm.environment.set(\"newPassword\", \"password\" + digits);",
 									"pm.environment.set(\"newAvatar\", \"avi\" + digits);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1346,25 +957,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{newUser}}\",\n\"password\": \"{{newPassword}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails on different user",
@@ -1376,8 +974,7 @@
 									"pm.test(\"status code is 403\", function () {\r",
 									"    pm.response.to.have.status(403);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1385,8 +982,7 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1399,25 +995,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with no session",
@@ -1429,8 +1012,7 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1438,8 +1020,7 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1452,25 +1033,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad session",
@@ -1482,8 +1050,7 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1491,8 +1058,7 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1505,25 +1071,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad username (valid session)",
@@ -1535,8 +1088,7 @@
 									"pm.test(\"status code is 404\", function () {\r",
 									"    pm.response.to.have.status(404);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1544,8 +1096,7 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1558,25 +1109,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xx{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad username (bad session)",
@@ -1588,8 +1126,7 @@
 									"pm.test(\"status code is 401\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
@@ -1597,8 +1134,7 @@
 							"script": {
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1611,25 +1147,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xx{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Changes to first user persist after failed calls",
@@ -1663,14 +1186,10 @@
 									"    pm.expect(jsonData).to.have.property('avatar');\r",
 									"    pm.expect(jsonData.avatar).to.eql(pm.environment.get(\"newAvatar\"));\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1680,25 +1199,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "No changes to other user after failed calls",
@@ -1731,14 +1237,10 @@
 									"pm.test('should not return password', function() {\r",
 									"    pm.expect(jsonData).to.not.have.property('password');\r",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1748,25 +1250,12 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		}
@@ -1775,7 +1264,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"type": "text/javascript",
 				"exec": [
 					""
 				]
@@ -1784,7 +1272,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"type": "text/javascript",
 				"exec": [
 					""
 				]
