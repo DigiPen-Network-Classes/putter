@@ -82,8 +82,7 @@
 						"url": {
 							"raw": "http://{{address}}:{{port}}/api/v1/users/"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Create succeeds with distinct second user",
@@ -143,8 +142,7 @@
 						"url": {
 							"raw": "http://{{address}}:{{port}}/api/v1/users/"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Create fails with duplicate user",
@@ -172,20 +170,9 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -242,8 +229,7 @@
 						"url": {
 							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login succeeds with a second login with different session",
@@ -286,8 +272,7 @@
 						"url": {
 							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login succeeds with second user with different session/token",
@@ -330,8 +315,7 @@
 						"url": {
 							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login fails with bad password",
@@ -359,20 +343,9 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Login fails with bad username",
@@ -400,20 +373,9 @@
 							"raw": "{\n\"username\": \"{{testUser}}{{testUser}}\",\n\"password\": \"{{testPassword}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/login"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -471,21 +433,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving a different user succeeds",
@@ -537,21 +487,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with no session",
@@ -577,21 +515,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad session",
@@ -623,21 +549,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with old session",
@@ -669,21 +583,9 @@
 							"raw": "{\n\"session\": \"{{originalSession}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad ID (valid session)",
@@ -714,21 +616,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xxx{{otherUserId}}xxx"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Retrieving fails with bad ID (bad session)",
@@ -759,21 +649,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xxx{{otherUserId}}xxx"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xxx{{otherUserId}}xxx"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -831,26 +709,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{testUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{testUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{testUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching for a different user succeeds",
@@ -902,26 +763,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with no session",
@@ -955,26 +799,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad session",
@@ -1013,26 +840,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{otherUser}}"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username={{otherUser}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad username (valid session)",
@@ -1063,26 +873,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "xx{{testUser}}xx"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with bad username (bad session)",
@@ -1113,26 +906,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "xx{{testUser}}xx"
-								}
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users?username=xx{{testUser}}xx"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Searching fails with no username (valid session)",
@@ -1163,20 +939,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		},
@@ -1237,21 +1002,9 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{newUser}}\",\n\"password\": \"{{newPassword}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails on different user",
@@ -1287,21 +1040,9 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"avatar\": \"{{newAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with no session",
@@ -1337,21 +1078,9 @@
 							"raw": "{\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad session",
@@ -1387,21 +1116,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad username (valid session)",
@@ -1437,21 +1154,9 @@
 							"raw": "{\n\"session\": \"{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xx{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Updating fails with bad username (bad session)",
@@ -1487,21 +1192,9 @@
 							"raw": "{\n\"session\": \"{{session}}{{session}}\",\n\"username\": \"{{testUser}}\",\n\"password\": \"{{testPassword}}\",\n\"avatar\": \"{{testAvatar}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"xx{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/xx{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "Changes to first user persist after failed calls",
@@ -1554,21 +1247,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{userId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{userId}}"
 						}
-					},
-					"response": []
+					}
 				},
 				{
 					"name": "No changes to other user after failed calls",
@@ -1620,21 +1301,9 @@
 							"raw": "{\n\"session\": \"{{session}}\"\n}"
 						},
 						"url": {
-							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}",
-							"protocol": "http",
-							"host": [
-								"{{address}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{otherUserId}}"
-							]
+							"raw": "http://{{address}}:{{port}}/api/v1/users/{{otherUserId}}"
 						}
-					},
-					"response": []
+					}
 				}
 			]
 		}
