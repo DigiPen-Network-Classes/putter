@@ -9,7 +9,7 @@ export function substituteString(str, dict) {
     }
     matches.forEach(match => {
         let val = dict.get(match.replace("{{", "").replace("}}", ""));
-        if (val != undefined) {
+        if (val !== undefined) {
             str = str.replace(match, val);
         }
     }); 

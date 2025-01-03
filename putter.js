@@ -100,7 +100,7 @@ async function doRun(postObj) {
             
             let response = await doRequest(folder, item);
             
-            evaluateTests(folder, item, response);
+            await evaluateTests(folder, item, response);
             log(success("passed!"));
         } 
     }
@@ -138,7 +138,7 @@ async function doPreRequestEvent(folder, item) {
     for (let i=0; i < item.event.length; i++) {
         let event = item.event[i];
         
-        if (event.listen != "prerequest") {
+        if (event.listen !== "prerequest") {
             // not the event type we're looking for
             continue;
         }
