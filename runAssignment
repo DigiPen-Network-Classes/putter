@@ -1,25 +1,40 @@
 #!/bin/bash
-if [ "$#" -lt 1 ]
-then
-    echo 'What assignment to run???'
+set -e
+if [ "$#" -lt 1 ]; then
+    echo "Usage: ./runAssignment (assignmentNumber) (studentName) (--verbose)"
     exit 1
 fi
 
-case $1 in
-    2 | 3 | 4 | 6)    
-        filename=examples/CS261_Assignment$1_Postman.json
+RUN_NUMBER="$1"
+STUDENT_NAME="$2"
+VERBOSE_FLAG="$3"
+
+# verbosity check
+if [ "$VERBOSE_FLAG" == "--verbose" ] || [ "$STUDENT_NAME" == "--verbose" ]; then
+  BE_VERBOSE="--verbose"
+else
+  BE_VERBOSE=""
+fi
+
+case $RUN_NUMBER in
+    2 | 3 | 4) 
+        FILENAME="examples/CS261_Assignment${RUN_NUMBER}_Postman.json"
+        ;;
+    6)
+        if [ -z "$STUDENT_NAME" ] || [ "$STUDENT_NAME" == "--verbose" ]; then
+          echo "Error: studentName is required for assignment 6"
+          exit 1
+        fi
+        FILENAME="examples/CS261_Assignment${RUN_NUMBER}_Postman.json"
         ;;
     *)
-        echo Unknown Argument or no Assignment For $1
+        echo "Unknown Argument or no Assignment For $RUN_NUMBER"
         exit 1
         ;;
 esac
 
-if [ -n "$2" ]
-then
-    verbose="--verbose"
+if [ "$RUN_NUMBER" -eq  6 ]; then
+  node putter run "$FILENAME" --address "$STUDENT_NAME.cs261-s25.meancat.com" --https $BE_VERBOSE
 else
-    verbose=""
+  node putter run "$FILENAME" $BE_VERBOSE
 fi
-
-node putter run $filename $verbose
