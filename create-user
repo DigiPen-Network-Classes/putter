@@ -1,0 +1,5 @@
+#!/bin/bash
+curl http://localhost:3100/api/v1/users \
+-d '{"username": "test_user", "password": "test_password", "avatar": "test_avatar"}' \
+ -vv -H 'Content-Type: application/json'
+
