@@ -1,0 +1,544 @@
+{
+	"info": {
+		"_postman_id": "c2936ffd-dbef-4cdc-9fb2-8da08f80b8db",
+		"name": "CS261 Redis Lab - Expiring (version spring-2024)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+    "item": [
+        {
+            "name": "Setting score for new user succeeds",
+	    "item": [
+		{
+			"name": "Setting score for new user succeeds",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let digits = '' + Math.floor((Math.random() * 100000));\r",
+							"pm.environment.set(\"testUser\", \"user\" + digits);\r",
+							"pm.environment.set(\"testScore\", parseInt(digits));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the same ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"testUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the same score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"testScore\"));\r",
+                                    			"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"score\": {{testScore}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{testUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{testUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting score for existing user succeeds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the same ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"testUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the same score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+ 							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"testScore\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "Value": "application/json"
+                            }
+                        ],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{testUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{testUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting non-existent user fails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/bad-user",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"bad-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Setting score for second user succeeds",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var digits = '' + Math.floor((Math.random() * 100000));\r",
+							"pm.environment.set(\"secondUser\", \"user\" + digits);\r",
+							"pm.environment.set(\"secondScore\", digits);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the second user ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"secondUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the second user score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"secondScore\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"score\": {{secondScore}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{secondUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{secondUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting score for second user returns the correct score",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the second user ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"secondUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the second user score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"secondScore\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{secondUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{secondUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Setting expiring replacement score for existing user succeeds",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var digits = '' + Math.floor((Math.random() * 100000));\r",
+							"pm.environment.set(\"testScoreNew\", digits);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the same ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"testUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the new score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"testScoreNew\"));\r",
+							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"score\": {{testScoreNew}},\r\n    \"expire\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{testUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{testUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting score immediately for modified user returns new score",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the same ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"testUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the new score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"testScoreNew\"));\r",
+							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{testUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{testUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting expiring score after 10 seconds for modified user fails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// wait 10 seconds (in milliseconds)\r",
+							"setTimeout(function(){}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [{
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{testUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{testUser}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting non-expiring score after 10 seconds succeeds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('should return the second user ID', function() {\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId).to.eql(pm.environment.get(\"secondUser\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('should return the second user score', function() {\r",
+							"    pm.expect(jsonData).to.have.property('score');\r",
+							"    pm.expect(jsonData.score).to.be.type('number');\r",
+							"    pm.expect(jsonData.score).to.eql(pm.environment.get(\"secondScore\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+				"url": {
+					"raw": "http://{{address}}:{{port}}/scoresByUser/{{secondUser}}",
+					"protocol": "http",
+					"host": [
+						"{{address}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"scoresByUser",
+						"{{secondUser}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+            ]
+        }
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "13100"
+		},
+		{
+			"key": "address",
+			"value": "localhost"
+		}
+	]
+}
