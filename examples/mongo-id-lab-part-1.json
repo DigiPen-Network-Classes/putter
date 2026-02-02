@@ -1,0 +1,356 @@
+{
+	"info": {
+		"name": "CS261 Mongo Id Lab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post a score for a game",
+			"item": [
+				{
+					"name": "Adding a new player's score for new game succeeds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return test game', function() {\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"gameName\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score datas', function() {\r",
+									"    pm.expect(jsonData).to.have.property('scores');\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data for the first user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"score\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"playerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"playerName\")]).to.equal(testScore);\r",
+									"});\r",
+									"pm.test('should not have _id property', ()=> {\r",
+									"    pm.expect(jsonData).to.not.have.property('_id');\r",
+									"});\r",
+									"pm.test('should have id property', ()=> {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});\r"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var digits = '' + Math.floor((Math.random() * 100000));",
+									"pm.environment.set(\"gameName\", \"game\" + digits);",
+									"pm.environment.set(\"playerName\", \"player\" + digits);",
+									"pm.environment.set(\"score\", digits);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"score\" : {{score}}\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/scoresLab/games/{{gameName}}/scores/{{playerName}}"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding another player's score for existing game succeeds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return test game', function() {\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"gameName\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score datas', function() {\r",
+									"    pm.expect(jsonData).to.have.property('scores');\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data for the first user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"score\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"playerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"playerName\")]).to.equal(testScore);\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data for the second user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"anotherScore\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"anotherPlayerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"anotherPlayerName\")]).to.equal(testScore);\r",
+									"});\r",
+									"pm.test('should not have _id property', ()=> {\r",
+									"    pm.expect(jsonData).to.not.have.property('_id');\r",
+									"});\r",
+									"pm.test('should have id property', ()=> {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});\r"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var digits = '' + Math.floor((Math.random() * 100000));",
+									"pm.environment.set(\"anotherPlayerName\", \"player\" + digits);",
+									"pm.environment.set(\"anotherScore\", digits);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"score\" : {{anotherScore}}\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/scoresLab/games/{{gameName}}/scores/{{anotherPlayerName}}",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"scoresLab",
+								"games",
+								"{{gameName}}",
+								"scores",
+								"{{anotherPlayerName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating score for existing player on existing game succeeds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return test game', function() {\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"gameName\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score datas', function() {\r",
+									"    pm.expect(jsonData).to.have.property('scores');\r",
+									"});\r",
+									"\r",
+									"pm.test('should have updated score data for the first user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"originalPlayerNewScore\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"playerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"playerName\")]).to.equal(testScore);\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data for the second user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"anotherScore\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"anotherPlayerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"anotherPlayerName\")]).to.equal(testScore);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var digits = '' + Math.floor((Math.random() * 100000));",
+									"pm.environment.set(\"originalPlayerNewScore\", digits);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"score\" : {{originalPlayerNewScore}}\n}"
+						},
+						"url": {
+							"raw": "http://{{address}}:{{port}}/scoresLab/games/{{gameName}}/scores/{{playerName}}",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"scoresLab",
+								"games",
+								"{{gameName}}",
+								"scores",
+								"{{playerName}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retrieve scores",
+			"item": 
+			[
+				{
+					"name": "Requesting scores for existing game succeeds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('should return test game', function() {\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"gameName\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data', function() {\r",
+									"    pm.expect(jsonData).to.have.property('scores');\r",
+									"});\r",
+									"\r",
+									"pm.test('should have updated score data for the first user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"originalPlayerNewScore\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"playerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"playerName\")]).to.equal(testScore);\r",
+									"});\r",
+									"\r",
+									"pm.test('should have score data for the second user', function() {\r",
+									"    let testScore = parseInt(pm.environment.get(\"anotherScore\"));\r",
+									"    pm.expect(jsonData.scores).to.have.property(pm.environment.get(\"anotherPlayerName\"));\r",
+									"    pm.expect(jsonData.scores[pm.environment.get(\"anotherPlayerName\")]).to.equal(testScore);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{address}}:{{port}}/scoresLab/games/{{gameName}}/scores",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"scoresLab",
+								"games",
+								"{{gameName}}",
+								"scores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Requesting scores for incorrect game fails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{address}}:{{port}}/scoresLab/games/{{gameName}}{{gameName}}/scores",
+							"protocol": "http",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"scoresLab",
+								"games",
+								"{{gameName}}{{gameName}}",
+								"scores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "address",
+			"value": "localhost"
+		},
+		{
+			"key": "port",
+			"value": "13200"
+		}
+	]
+}
