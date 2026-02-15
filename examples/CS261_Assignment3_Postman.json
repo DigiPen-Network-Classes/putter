@@ -353,7 +353,7 @@
 					"response": []
 				},
 				{
-					"name": "Login succeeds with second user with different session",
+					"name": "Login succeeds with second user with different session/token",
 					"event": [
 						{
 							"listen": "test",
@@ -1531,8 +1531,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"status code is 404\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
+									"pm.test(\"status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
