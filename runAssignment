@@ -4,7 +4,7 @@ if [ "$#" -lt 1 ]; then
     echo "Usage: ./runAssignment (assignmentNumber) (studentName) (--verbose)"
     exit 1
 fi
-
+TERM="cs261-s26"
 RUN_NUMBER="$1"
 STUDENT_NAME="$2"
 VERBOSE_FLAG="$3"
@@ -34,7 +34,7 @@ case $RUN_NUMBER in
 esac
 
 if [ "$RUN_NUMBER" -eq  6 ]; then
-  node putter run "$FILENAME" --address "$STUDENT_NAME.cs261-s25.meancat.com" --https $BE_VERBOSE
+  node putter run "$FILENAME" --address "$STUDENT_NAME.$TERM.meancat.com" --https $BE_VERBOSE
 else
   node putter run "$FILENAME" $BE_VERBOSE
 fi
