@@ -17,7 +17,7 @@ else
 fi
 
 case $RUN_NUMBER in
-    2 | 3 | 4) 
+    2 | 3 | 3old | 4 | 4old) 
         FILENAME="examples/CS261_Assignment${RUN_NUMBER}_Postman.json"
         ;;
     6)
