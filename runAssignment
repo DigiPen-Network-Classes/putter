@@ -20,7 +20,7 @@ case $RUN_NUMBER in
     2 | 3 | 3old | 4 | 4old) 
         FILENAME="examples/CS261_Assignment${RUN_NUMBER}_Postman.json"
         ;;
-    6)
+    6 | 6old)
         if [ -z "$STUDENT_NAME" ] || [ "$STUDENT_NAME" == "--verbose" ]; then
           echo "Error: studentName is required for assignment 6"
           exit 1
@@ -33,7 +33,7 @@ case $RUN_NUMBER in
         ;;
 esac
 
-if [ "$RUN_NUMBER" -eq  6 ]; then
+if [[ "$RUN_NUMBER" == "6" || "$RUN_NUMBER" == "6old" ]]; then
   node putter run "$FILENAME" --address "$STUDENT_NAME.$TERM.meancat.com" --https $BE_VERBOSE
 else
   node putter run "$FILENAME" $BE_VERBOSE
